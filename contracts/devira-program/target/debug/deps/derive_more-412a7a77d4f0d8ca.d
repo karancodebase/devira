@@ -1,0 +1,12 @@
+/home/karan/project_2_backup/target/debug/deps/libderive_more-412a7a77d4f0d8ca.rmeta: /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/lib.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/add.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/ops.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/as.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/str.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/../README.md
+
+/home/karan/project_2_backup/target/debug/deps/libderive_more-412a7a77d4f0d8ca.rlib: /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/lib.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/add.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/ops.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/as.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/str.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/../README.md
+
+/home/karan/project_2_backup/target/debug/deps/derive_more-412a7a77d4f0d8ca.d: /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/lib.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/add.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/ops.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/as.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/str.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/../README.md
+
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/lib.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/add.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/ops.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/as.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/str.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/derive_more-1.0.0/src/../README.md:

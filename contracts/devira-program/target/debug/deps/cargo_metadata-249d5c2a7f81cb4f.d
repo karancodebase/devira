@@ -1,0 +1,11 @@
+/home/karan/project_2_backup/target/debug/deps/libcargo_metadata-249d5c2a7f81cb4f.rmeta: /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/lib.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/dependency.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/diagnostic.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/errors.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/messages.rs
+
+/home/karan/project_2_backup/target/debug/deps/libcargo_metadata-249d5c2a7f81cb4f.rlib: /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/lib.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/dependency.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/diagnostic.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/errors.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/messages.rs
+
+/home/karan/project_2_backup/target/debug/deps/cargo_metadata-249d5c2a7f81cb4f.d: /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/lib.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/dependency.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/diagnostic.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/errors.rs /home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/messages.rs
+
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/lib.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/dependency.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/diagnostic.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/errors.rs:
+/home/karan/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cargo_metadata-0.18.1/src/messages.rs:
