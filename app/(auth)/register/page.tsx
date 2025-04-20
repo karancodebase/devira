@@ -22,7 +22,7 @@ const Page = () => {
 
         const data = await res.json();
         if (data.userExists) {
-          router.push("/dashboard");
+          router.push("/profile");
         } else {
           setUserExists(false);
         }

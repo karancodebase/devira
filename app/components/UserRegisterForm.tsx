@@ -51,7 +51,7 @@ export default function UserRegisterForm() {
       // Redirect to dashboard after 2 seconds
       setTimeout(() => {
         setShowModal(false)
-        router.push('/dashboard')
+        router.push('/profile')
       }, 2000)
     } catch (error) {
       console.error('Error:', error)
