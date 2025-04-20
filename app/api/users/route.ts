@@ -93,7 +93,7 @@ export async function GET(req: Request) {
   try {
     await connectToDatabase()
     const profile = await UserProfile.findOne({ email })
-
+  console.log(profile)
     if (!profile) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 })
     }

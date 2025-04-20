@@ -9,6 +9,7 @@ export interface IUserProfile extends Document {
   semester: number
   github: string
   leetcode: string
+  github_oauth:string
 }
 
 const userProfileSchema = new Schema<IUserProfile>({
@@ -20,6 +21,7 @@ const userProfileSchema = new Schema<IUserProfile>({
   semester: { type: Number, required: true },
   github: { type: String, required: true },
   leetcode: { type: String, required: true },
+  github_oauth: { type: String, required: false },
 }, { timestamps: true })
 
 export const UserProfile = models.UserProfile || mongoose.model<IUserProfile>('UserProfile', userProfileSchema)

@@ -2,10 +2,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Navbar from "../components/Navbar";
 import { useWallet } from "../../hooks/useWallet"
 import { redeemBadge } from "../../utils/redeemBadge"
+import { UserProfile } from "../../models/UserProfile";
 
 interface UserProfile {
   _id: string;
@@ -19,6 +20,8 @@ interface UserProfile {
   leetcode: string;
   streak: number;
   badgeClaimed: boolean;
+  github_oauth: string;
+ 
 }
 
 const BADGES = [
@@ -34,7 +37,8 @@ export default function UserProfileList() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [canRedeem, setCanRedeem] = useState(false);
-
+  const [streak, setStreak] = useState({ currentStreak: 0, maxStreak: 0 });
+ 
   useEffect(() => {
     const fetchProfile = async () => {
       if (!session?.user?.email) return;
@@ -42,7 +46,7 @@ export default function UserProfileList() {
       try {
         const res = await fetch(`/api/users?email=${session.user.email}`);
         const data = await res.json();
-        setProfile(data.profile);
+        setProfile({ ...data.profile, nfts: data.profile.nfts || [] });
       } catch (err) {
         console.error("Failed to fetch profile:", err);
       } finally {
@@ -52,6 +56,25 @@ export default function UserProfileList() {
 
     fetchProfile();
   }, [session]);
+useEffect(() => { 
+    const fetchStreak = async () => {
+      if (!profile?.github) return;
+
+      try {
+        const res = await fetch(`/api/github?username=${profile.github}` , {
+           method :"POST"
+        });
+        const data = await res.json();
+        setStreak(data);
+      } catch (err) {
+        console.error("Failed to fetch streak:", err);
+      }
+    };
+
+    fetchStreak();
+  }
+, [profile]);
+
 
   useEffect(() => {
     if (profile) {
@@ -71,6 +94,8 @@ export default function UserProfileList() {
         No profile found.
       </div>
     );
+
+  const remainingForNextNFT = 5 - (profile.streak % 5);
 
   return (
     <>
@@ -112,7 +137,8 @@ export default function UserProfileList() {
               </div>
 
               <div className="mt-4">
-                <p>GitHub Streak: {profile.streak} days</p>
+                <p>GitHub Streak: {streak.currentStreak} days</p>
+                <p>Max Streak: {streak.maxStreak} days</p>
                 {canRedeem && (
                   address
                     ? <button
@@ -131,35 +157,64 @@ export default function UserProfileList() {
               </div>
             </div>
 
-            {/* Badges Section */}
-            <div className="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col border border-gray-800">
-              <div className="w-full flex items-center gap-3 mb-4">
-                <div className="w-2 h-8 bg-gradient-to-b from-yellow-400 to-yellow-700 rounded-full" />
-                <h2 className="text-2xl font-bold text-yellow-300 tracking-tight">
-                  Badges
-                </h2>
+            {/* Badges & NFTs Section */}
+            <div className="flex-1 bg-gray-900 rounded-2xl shadow-lg p-6 border border-gray-800 grid grid-cols-2 gap-6">
+              {/* Badges */}
+              <div className="flex flex-col">
+                <div className="w-full flex items-center gap-3 mb-4">
+                  <div className="w-2 h-8 bg-gradient-to-b from-yellow-400 to-yellow-700 rounded-full" />
+                  <h2 className="text-2xl font-bold text-yellow-300 tracking-tight">
+                    Badges
+                  </h2>
+                </div>
+                <p className="text-gray-400 text-sm mb-4">
+                  Your achievements and badges earned on the platform.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {BADGES.map((badge) => (
+                    <span
+                      key={badge.name}
+                      className={`px-3 py-1 rounded-full text-xs font-semibold ${badge.color} bg-opacity-80 text-white`}
+                    >
+                      {badge.name}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  Keep contributing to unlock more badges!
+                </p>
               </div>
-              <p className="text-gray-400 text-sm mb-4">
-                Your achievements and badges earned on the platform.
-              </p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                {BADGES.map((badge) => (
-                  <span
-                    key={badge.name}
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${badge.color} bg-opacity-80 text-white`}
-                  >
-                    {badge.name}
-                  </span>
-                ))}
+
+              {/* NFTs */}
+              <div className="flex flex-col">
+                <div className="w-full flex items-center gap-3 mb-4">
+                  <div className="w-2 h-8 bg-gradient-to-b from-teal-400 to-teal-700 rounded-full" />
+                  <h2 className="text-2xl font-bold text-teal-300 tracking-tight">
+                    My NFTs
+                  </h2>
+                </div>
+                <p className="text-gray-400 text-sm mb-4">
+                  NFTs you've earned through your contributions.
+                </p>
+                <div className="flex flex-wrap gap-2 mb-2 max-h-32 overflow-auto">
+                   (
+                    <p className="text-xs text-gray-500">No NFTs earned yet.</p>
+                  )
+                </div>
+                <p className="text-xs text-gray-500 mt-2">
+                  NFTs will appear here once you reach the required streaks.
+                </p>
               </div>
-              <p className="text-xs text-gray-500 mt-2">
-                Keep contributing to unlock more badges!
-              </p>
             </div>
           </div>
 
-          {/* GitHub Heatmap */}
-          <div className="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col items-center border border-gray-800">
+          {/* GitHub Heatmap & Streak Notice */}
+          <div className="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col items-center border border-gray-800 mt-6">
+            <div className="mb-4 text-center">
+              <p className="text-lg font-medium">
+                You need <span className="font-bold">{10 - streak.currentStreak}</span> more day{remainingForNextNFT > 1 ? 's' : ''} of streak to earn your next NFT!
+              </p>
+            </div>
             <div className="w-full flex items-center gap-3 mb-4">
               <div className="w-2 h-8 bg-gradient-to-b from-purple-500 to-indigo-600 rounded-full" />
               <h2 className="text-2xl font-bold text-purple-300 tracking-tight">
@@ -170,9 +225,7 @@ export default function UserProfileList() {
               Celebrating your coding journey and contribution streaks!
             </p>
             <img
-              src={`https://ghchart.rshah.org/${
-                profile.github.split("/").pop() || "username"
-              }`}
+              src={`https://ghchart.rshah.org/${profile.github.split("/").pop() || "username"}`}
               alt="GitHub Heatmap"
               className="w-full h-32 object-contain bg-gray-950 rounded"
             />
