@@ -4,8 +4,8 @@
 import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import Navbar from "../components/Navbar";
-import { useWallet } from "../hooks/useWallet";
-import { redeemBadge } from "../utils/redeemBadge";
+import { useWallet } from "../../hooks/useWallet"
+import { redeemBadge } from "../../utils/redeemBadge"
 
 interface UserProfile {
   _id: string;
