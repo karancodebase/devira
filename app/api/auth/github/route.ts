@@ -1,9 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { connectToDatabase } from '@/lib/mongoose'
 import { NextRequest, NextResponse } from 'next/server'                     // :contentReference[oaicite:0]{index=0}
 import { UserProfile } from '../../../../models/UserProfile'
-import { getServerSession } from 'next-auth'
-import { User } from 'lucide-react'
-import { useProof } from 'wagmi'
 
 export async function GET(request: NextRequest) {
   // 1. Parse the ?code=… query param
@@ -40,11 +38,11 @@ export async function GET(request: NextRequest) {
 
 
 
-    const result = await UserProfile.findOneAndUpdate(
-        { email },
-        { $set: { github_oauth: access_token } },
-        { new: true, upsert: false }   // `new: true` returns the doc after update
-      );
+    // const result = await UserProfile.findOneAndUpdate(
+    //     { email },
+    //     { $set: { github_oauth: access_token } },
+    //     { new: true, upsert: false }   // `new: true` returns the doc after update
+    //   );
 
 
    

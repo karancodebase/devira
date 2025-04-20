@@ -5,7 +5,7 @@ interface GitHubEvent {
   type: string;
   created_at: string;
 }
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   try {
 
   const  {searchParams} = new URL(req.url)

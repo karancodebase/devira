@@ -5,7 +5,7 @@ import { UserProfile } from "../../../models/UserProfile";
 
 export async function POST(req: Request) {
   const body = await req.json();
-  console.log("Received body:", body);
+  // console.log("Received body:", body);
 
   const {
     email,
@@ -93,7 +93,7 @@ export async function GET(req: Request) {
   try {
     await connectToDatabase()
     const profile = await UserProfile.findOne({ email })
-  console.log(profile)
+  // console.log(profile)
     if (!profile) {
       return NextResponse.json({ message: 'User not found' }, { status: 404 })
     }

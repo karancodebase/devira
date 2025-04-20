@@ -2,10 +2,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Navbar from "../components/Navbar";
-import { useWallet } from "../../hooks/useWallet"
-import { redeemBadge } from "../../utils/redeemBadge"
+import { useWallet } from "../../hooks/useWallet";
+import { redeemBadge } from "../../utils/redeemBadge";
 import { UserProfile } from "../../models/UserProfile";
 
 interface UserProfile {
@@ -21,7 +21,6 @@ interface UserProfile {
   streak: number;
   badgeClaimed: boolean;
   github_oauth: string;
- 
 }
 
 const BADGES = [
@@ -38,7 +37,7 @@ export default function UserProfileList() {
   const [loading, setLoading] = useState(true);
   const [canRedeem, setCanRedeem] = useState(false);
   const [streak, setStreak] = useState({ currentStreak: 0, maxStreak: 0 });
- 
+
   useEffect(() => {
     const fetchProfile = async () => {
       if (!session?.user?.email) return;
@@ -56,13 +55,13 @@ export default function UserProfileList() {
 
     fetchProfile();
   }, [session]);
-useEffect(() => { 
+  useEffect(() => {
     const fetchStreak = async () => {
       if (!profile?.github) return;
 
       try {
-        const res = await fetch(`/api/github?username=${profile.github}` , {
-           method :"POST"
+        const res = await fetch(`/api/github?username=${profile.github}`, {
+          method: "POST",
         });
         const data = await res.json();
         setStreak(data);
@@ -72,13 +71,14 @@ useEffect(() => {
     };
 
     fetchStreak();
-  }
-, [profile]);
-
+  }, [profile]);
 
   useEffect(() => {
     if (profile) {
-      setCanRedeem((profile.streak === 30 || profile.streak === 50) && !profile.badgeClaimed);
+      setCanRedeem(
+        (profile.streak === 30 || profile.streak === 50) &&
+          !profile.badgeClaimed
+      );
     }
   }, [profile]);
 
@@ -121,13 +121,34 @@ useEffect(() => {
               </p>
               <p className="text-gray-400 text-sm mb-2">{profile.email}</p>
               <div className="flex gap-3 mb-3">
-                <a href={profile.github} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400" title="GitHub">
-                  <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-400"
+                  title="GitHub"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="..." />
                   </svg>
                 </a>
-                <a href={profile.leetcode} target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400" title="LeetCode">
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a
+                  href={profile.leetcode}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-yellow-400"
+                  title="LeetCode"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path d="..." />
                   </svg>
                 </a>
@@ -139,21 +160,22 @@ useEffect(() => {
               <div className="mt-4">
                 <p>GitHub Streak: {streak.currentStreak} days</p>
                 <p>Max Streak: {streak.maxStreak} days</p>
-                {canRedeem && (
-                  address
-                    ? <button
-                        onClick={() => redeemBadge(profile.streak, signer!)}
-                        className="mt-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
-                      >
-                        Redeem Badge
-                      </button>
-                    : <button
-                        onClick={connectWallet}
-                        className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm"
-                      >
-                        Connect Wallet to Redeem
-                      </button>
-                )}
+                {canRedeem &&
+                  (address ? (
+                    <button
+                      onClick={() => redeemBadge(profile.streak, signer!)}
+                      className="mt-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm"
+                    >
+                      Redeem Badge
+                    </button>
+                  ) : (
+                    <button
+                      onClick={connectWallet}
+                      className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm"
+                    >
+                      Connect Wallet to Redeem
+                    </button>
+                  ))}
               </div>
             </div>
 
@@ -194,12 +216,10 @@ useEffect(() => {
                   </h2>
                 </div>
                 <p className="text-gray-400 text-sm mb-4">
-                  NFTs you've earned through your contributions.
+                  NFTs you&apos;ned through your contributions.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-2 max-h-32 overflow-auto">
-                   (
-                    <p className="text-xs text-gray-500">No NFTs earned yet.</p>
-                  )
+                  (<p className="text-xs text-gray-500">No NFTs earned yet.</p>)
                 </div>
                 <p className="text-xs text-gray-500 mt-2">
                   NFTs will appear here once you reach the required streaks.
@@ -212,7 +232,10 @@ useEffect(() => {
           <div className="bg-gray-900 rounded-2xl shadow-lg p-6 flex flex-col items-center border border-gray-800 mt-6">
             <div className="mb-4 text-center">
               <p className="text-lg font-medium">
-                You need <span className="font-bold">{10 - streak.currentStreak}</span> more day{remainingForNextNFT > 1 ? 's' : ''} of streak to earn your next NFT!
+                You need{" "}
+                <span className="font-bold">{10 - streak.currentStreak}</span>{" "}
+                more day{remainingForNextNFT > 1 ? "s" : ""} of streak to earn
+                your next NFT!
               </p>
             </div>
             <div className="w-full flex items-center gap-3 mb-4">
@@ -225,15 +248,19 @@ useEffect(() => {
               Celebrating your coding journey and contribution streaks!
             </p>
             <img
-              src={`https://ghchart.rshah.org/${profile.github.split("/").pop() || "username"}`}
+              src={`https://ghchart.rshah.org/${
+                profile.github.split("/").pop() || "username"
+              }`}
               alt="GitHub Heatmap"
-              className="w-full h-32 object-contain bg-gray-950 rounded"
+              className="w-full h-32 object-contain bg-black rounded"
             />
+
             <p className="text-xs text-gray-500 mt-2">
               Your GitHub contribution activity
             </p>
           </div>
         </div>
+   
       </div>
     </>
   );
